@@ -2,17 +2,17 @@ import { DataSource } from 'typeorm'
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'postgres',
-  password: 'postgres',
-  database: 'stock_manager',
+  host: process.env.DB_POSTGRES_HOST,
+  port: Number(process.env.DB_POSTGRES_PORT ?? 5432),
+  username: process.env.DB_POSTGRES_USER,
+  password: process.env.DB_POSTGRES_PASSWORD,
+  database: process.env.DB_POSTGRES_NAME,
   logging: false,
   synchronize: true,
-  entities: ['src/modules/**/*/infra/typeorm/entities/*.ts']
+  entities: [
+    process.env.TYPEORM_ENTITIES ?? ''
+  ]
 })
-
-export const teste = Date.now()
 
 export function initializeDatabaseConnection () {
   AppDataSource
