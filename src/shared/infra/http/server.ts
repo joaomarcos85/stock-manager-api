@@ -1,7 +1,5 @@
-import dotenv from 'dotenv-safe'
+import 'dotenv-safe/config'
 import { App } from './app'
-
-dotenv.config()
 
 const app = new App()
 
